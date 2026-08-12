@@ -9,26 +9,29 @@ class Bank():
 
     def add_customer(self, customer):
         """Add customer into the customer list."""
-        pass
+        self.customers.append(customer)
 
     def remove_customer(self, customer):
         """Remove the given customer from the list."""
-        pass
+        self.customers.remove(customer)
 
     def find_customer(self, customer_id):
         """Find the customer using the id"""
-        pass
+        if customer_id in self.customers:
+            print(self.customers[customer_id])
 
     def add_account(self, account):
         """Add account to the accounts list."""
-        pass
+        self.accounts.append(account)
 
     def remove_account(self, account):
         """Remove the given customer from the list."""
+        self.accounts.remove(account)
 
     def find_account(self, account_number):
         """Find the account using the account number."""
-        pass
+        if account_number in self.accounts:
+            print(self.accounts[account_number])
 
     def transfer_money(self, sender_account, receiver_account, amount):
         """Transfer the given ammount to the recieving account."""
