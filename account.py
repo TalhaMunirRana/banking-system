@@ -11,6 +11,9 @@ class Account():
         self.transaction_history = []
         self.status = status
 
+    def __str__(self):
+        print(f"{self.account_number}: {self.account_type}")
+
     def deposit(self, amount):
         """Deposit the ammount in the account balance."""
         if amount > 0:

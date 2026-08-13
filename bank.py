@@ -26,7 +26,11 @@ class Bank():
 
     def remove_account(self, account):
         """Remove the given customer from the list."""
-        self.accounts.remove(account)
+        for account_idx in self.accounts:
+            if self.accounts[account_idx] == account:
+                self.accounts.remove(account)
+        else:
+            print(f"{account} does not exist.")
 
     def find_account(self, account_number):
         """Find the account using the account number."""
