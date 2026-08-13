@@ -7,17 +7,29 @@ class Account():
         self.account_holder = account_holder
         self.balance = balance
         self.pin = pin
-        self. account_type = account_type
+        self.account_type = account_type
         self.transaction_history = []
         self.status = status
 
     def deposit(self, amount):
         """Deposit the ammount in the account balance."""
-        self.balance += amount
+        if amount > 0:
+            self.balance += amount
+        elif amount == 0:
+            print(f"You can't deposit ${amount}.")
+        else:
+            print(f"You can't deposit negative amount.")
 
     def withdraw(self, amount):
         """Withdraw the ammount give by the customer"""
-        self.balance -= amount
+        if 0 < amount <= self.balance: 
+            self.balance -= amount
+        elif amount > self.balance:
+            print("Insufficient funds.")
+        elif amount == 0:
+            print("You can't withdraw $0.")
+        else:
+            print("You can't withdraw negative amount.")
 
     def check_balance(self):
         """Shows the current balance in the account."""
@@ -34,4 +46,9 @@ class Account():
 
     def close_account(self):
         """Closes the account."""
-        pass
+        if self.status == 'active':
+            self.status == 'closed'
+            print("Your account has been closed.")
+        elif self.status == 'closed':
+            print("Your account is already closed.")
+        
