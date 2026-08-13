@@ -22,7 +22,12 @@ class Bank():
 
     def add_account(self, account):
         """Add account to the accounts list."""
-        self.accounts.append(account)
+        for accound_idx in self.accounts:
+            if self.accounts[accound_idx] == account:
+                self.accounts.append(account)
+            else:
+                print("Account already exists.")
+                break
 
     def remove_account(self, account):
         """Remove the given customer from the list."""
@@ -39,4 +44,5 @@ class Bank():
 
     def transfer_money(self, sender_account, receiver_account, amount):
         """Transfer the given ammount to the recieving account."""
-        pass
+        sender_account -= amount
+        receiver_account += amount
