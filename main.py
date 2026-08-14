@@ -120,16 +120,5 @@ bank.add_account(alan_tyler_account)
 
 alan_tyler.add_account(alan_tyler_account)
 
-alan_tyler_account.check_balance()
-
-alan_tyler_account.deposit(200)
-
-alan_tyler_account.check_balance()
-
-alan_tyler_account.withdraw(300)
-
-alan_tyler_account.check_balance()
-
-alan_tyler_account.show_transactions()
 
 
