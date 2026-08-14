@@ -7,31 +7,34 @@ class Bank():
         self.customers = []
         self.accounts = []
 
+    def __str__(self):
+            return f"{self.name.title()}"
+
     def add_customer(self, customer):
         """Add customer into the customer list."""
-        pass
+        self.customers.append(customer)
 
-    def remove_customer(self, customer):
+    def remove_customer(self):
         """Remove the given customer from the list."""
         pass
 
-    def find_customer(self, customer_id):
+    def find_customer(self):
         """Find the customer using the id"""
         pass
 
     def add_account(self, account):
         """Add account to the accounts list."""
-        pass
+        self.accounts.append(account)
 
-    def remove_account(self, account):
+    def remove_account(self):
         """Remove the given customer from the list."""
         pass
 
-    def find_account(self, account_number):
+    def find_account(self):
         """Find the account using the account number."""
         pass
 
-    def transfer_money(self, sender_account, receiver_account, amount):
+    def transfer_money(self):
         """Transfer the given ammount to the recieving account."""
         pass
 
@@ -48,11 +51,14 @@ class Account():
         self.transaction_history = []
         self.status = status
 
-    def deposit(self, amount):
+    def __str__(self):
+        return f"{self.account_number} | {self.account_type} | ${self.balance}"
+
+    def deposit(self):
         """Deposit the ammount in the account balance."""
         pass
 
-    def withdraw(self, amount):
+    def withdraw(self):
         """Withdraw the ammount give by the customer"""
         pass
 
@@ -82,14 +88,28 @@ class Customer():
         self.phone = phone
         self.accounts = []
 
-    def add_account(self, account):
+    def __str__(self):
+        return f"{self.customer_id} | {self.name.title()} | {self.phone}"
+
+    def add_account(self):
         """Adds the account in the customer account list."""
         pass
 
-    def remove_account(self, account):
+    def remove_account(self):
         """Removes the account from the customer accounts list."""
         pass
 
     def show_accounts(self):
         """Shows the accounts created under customer's name"""
         pass
+
+
+bank = Bank("Commercial Bank")
+
+alan_tyler = Customer("C001", "Alan Tyler", "+12345678")
+
+alan_tyler_account = Account("A001", alan_tyler, 1000, "1234", "Current", "Active")
+
+bank.add_customer(alan_tyler)
+bank.add_account(alan_tyler_account)
+print(bank.accounts)
