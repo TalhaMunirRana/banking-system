@@ -18,9 +18,14 @@ class Bank():
         """Remove the given customer from the list."""
         pass
 
-    def find_customer(self):
+    def find_customer(self, c_id):
         """Find the customer using the id"""
-        pass
+        for customer in self.customers:
+            if customer.customer_id == c_id:
+                print(customer)
+            else:
+                print("Customer does not exist.")
+                break
 
     def add_account(self, account):
         """Add account to the accounts list."""
@@ -30,9 +35,14 @@ class Bank():
         """Remove the given customer from the list."""
         pass
 
-    def find_account(self):
+    def find_account(self, acc_id):
         """Find the account using the account number."""
-        pass
+        for account in self.accounts:
+            if account.account_number == acc_id:
+                print(account)
+            else:
+                print("Account does not exist.")
+                break
 
     def transfer_money(self):
         """Transfer the given ammount to the recieving account."""
@@ -119,6 +129,7 @@ bank.add_customer(alan_tyler)
 bank.add_account(alan_tyler_account)
 
 alan_tyler.add_account(alan_tyler_account)
+
 
 
 
