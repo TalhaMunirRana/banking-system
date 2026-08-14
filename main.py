@@ -54,17 +54,19 @@ class Account():
     def __str__(self):
         return f"{self.account_number} | {self.account_type} | ${self.balance}"
 
-    def deposit(self):
+    def deposit(self, amount):
         """Deposit the ammount in the account balance."""
-        pass
+        self.balance += amount
+        self.transaction_history.append(f"Deposit - ${amount}")
 
-    def withdraw(self):
+    def withdraw(self, amount):
         """Withdraw the ammount give by the customer"""
-        pass
+        self.balance -= amount
+        self.transaction_history.append(f"Withdraw - ${amount}")
 
     def check_balance(self):
         """Shows the current balance in the account."""
-        pass
+        print(f"Current balance: ${self.balance}")
 
     def transfer(self):
         """Transfers the amount to the other account."""
@@ -72,11 +74,13 @@ class Account():
 
     def show_transactions(self):
         """Displays the transactions done by the account."""
-        pass
+        print("\n---Transactions History---")
+        for transaction in self.transaction_history:
+            print(transaction)
 
     def close_account(self):
         """Closes the account."""
-        pass
+        self.status = 'Closed'
 
 class Customer():
     """Contains the information about the customer and it's accounts"""
@@ -91,9 +95,9 @@ class Customer():
     def __str__(self):
         return f"{self.customer_id} | {self.name.title()} | {self.phone}"
 
-    def add_account(self):
+    def add_account(self, account):
         """Adds the account in the customer account list."""
-        pass
+        self.accounts.append(account)
 
     def remove_account(self):
         """Removes the account from the customer accounts list."""
@@ -101,7 +105,8 @@ class Customer():
 
     def show_accounts(self):
         """Shows the accounts created under customer's name"""
-        pass
+        for account in self.accounts:
+            print(account)
 
 
 bank = Bank("Commercial Bank")
@@ -112,4 +117,19 @@ alan_tyler_account = Account("A001", alan_tyler, 1000, "1234", "Current", "Activ
 
 bank.add_customer(alan_tyler)
 bank.add_account(alan_tyler_account)
-print(bank.accounts)
+
+alan_tyler.add_account(alan_tyler_account)
+
+alan_tyler_account.check_balance()
+
+alan_tyler_account.deposit(200)
+
+alan_tyler_account.check_balance()
+
+alan_tyler_account.withdraw(300)
+
+alan_tyler_account.check_balance()
+
+alan_tyler_account.show_transactions()
+
+
