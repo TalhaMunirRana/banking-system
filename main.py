@@ -14,9 +14,11 @@ class Bank():
         """Add customer into the customer list."""
         self.customers.append(customer)
 
-    def remove_customer(self):
+    def remove_customer(self, c_id):
         """Remove the given customer from the list."""
-        pass
+        for customer in self.customers:
+            if customer.customer_id == c_id:
+                self.customers.remove(customer)
 
     def find_customer(self, c_id):
         """Find the customer using the id"""
@@ -31,9 +33,11 @@ class Bank():
         """Add account to the accounts list."""
         self.accounts.append(account)
 
-    def remove_account(self):
+    def remove_account(self, acc_number):
         """Remove the given customer from the list."""
-        pass
+        for account in self.accounts:
+            if account.account_number == acc_number:
+                self.accounts.remove(account)
 
     def find_account(self, acc_id):
         """Find the account using the account number."""
@@ -136,3 +140,23 @@ bank = Bank("Commercial Bank")
 alan_tyler = Customer("C001", "Alan Tyler", "+12345678")
 
 alan_tyler_account = Account("A001", alan_tyler, 1000, "1234", "Current", "Active")
+
+jake_blake = Customer("C002", "Jake Blake", "+1231245")
+
+jake_blake_account = Account("A002", jake_blake, 3000, "4123", "Current", "Active")
+
+bank.add_customer(alan_tyler)
+bank.add_customer(jake_blake)
+
+print(bank.customers)
+
+bank.add_account(alan_tyler_account)
+bank.add_account(jake_blake_account)
+
+print(bank.accounts)
+
+bank.remove_customer("C002")
+bank.remove_account("A002")
+
+print(bank.customers)
+print(bank.accounts)
