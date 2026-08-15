@@ -136,18 +136,3 @@ bank = Bank("Commercial Bank")
 alan_tyler = Customer("C001", "Alan Tyler", "+12345678")
 
 alan_tyler_account = Account("A001", alan_tyler, 1000, "1234", "Current", "Active")
-
-bank.add_customer(alan_tyler)
-bank.add_account(alan_tyler_account)
-
-alan_tyler.add_account(alan_tyler_account)
-
-alan_tyler_account.withdraw(100)
-alan_tyler_account.withdraw(0)
-alan_tyler_account.withdraw(-100)
-
-print(alan_tyler_account.balance)
-
-
-
-
