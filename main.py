@@ -66,8 +66,14 @@ class Account():
 
     def deposit(self, amount):
         """Deposit the ammount in the account balance."""
-        self.balance += amount
-        self.transaction_history.append(f"Deposit - ${amount}")
+        if amount > 0:
+            self.balance += amount
+            print(f"${amount} has been deposited.")
+            self.transaction_history.append(f"Deposit - ${amount}")
+        elif amount == 0:
+            print("You can't deposit $0.")
+        else:
+            print("You can't deposit a negative amount.")
 
     def withdraw(self, amount):
         """Withdraw the ammount give by the customer"""
@@ -129,6 +135,12 @@ bank.add_customer(alan_tyler)
 bank.add_account(alan_tyler_account)
 
 alan_tyler.add_account(alan_tyler_account)
+
+alan_tyler_account.deposit(100)
+alan_tyler_account.deposit(0)
+alan_tyler_account.deposit(-299)
+
+print(alan_tyler_account.balance)
 
 
 
