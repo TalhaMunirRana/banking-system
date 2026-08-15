@@ -48,9 +48,10 @@ class Bank():
                 print("Account does not exist.")
                 break
 
-    def transfer_money(self):
+    def transfer_money(self, sender_account, reciever_account, amount):
         """Transfer the given ammount to the recieving account."""
-        pass
+        sender_account.balance -= amount
+        reciever_account.balance += amount
 
 class Account():
     """Model the account"""
@@ -148,15 +149,10 @@ jake_blake_account = Account("A002", jake_blake, 3000, "4123", "Current", "Activ
 bank.add_customer(alan_tyler)
 bank.add_customer(jake_blake)
 
-print(bank.customers)
-
 bank.add_account(alan_tyler_account)
 bank.add_account(jake_blake_account)
 
-print(bank.accounts)
+bank.transfer_money(alan_tyler_account, jake_blake_account, 100)
 
-bank.remove_customer("C002")
-bank.remove_account("A002")
-
-print(bank.customers)
-print(bank.accounts)
+print(alan_tyler_account.balance)
+print(jake_blake_account.balance)
