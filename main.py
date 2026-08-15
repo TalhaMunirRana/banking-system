@@ -77,8 +77,14 @@ class Account():
 
     def withdraw(self, amount):
         """Withdraw the ammount give by the customer"""
-        self.balance -= amount
-        self.transaction_history.append(f"Withdraw - ${amount}")
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"${amount} has been withdrawn.")
+            self.transaction_history.append(f"Withdraw - ${amount}")
+        elif amount == 0:
+            print("You can't withdraw $0.")
+        else:
+            print("You can't withdraw negative amount.")
 
     def check_balance(self):
         """Shows the current balance in the account."""
@@ -136,9 +142,9 @@ bank.add_account(alan_tyler_account)
 
 alan_tyler.add_account(alan_tyler_account)
 
-alan_tyler_account.deposit(100)
-alan_tyler_account.deposit(0)
-alan_tyler_account.deposit(-299)
+alan_tyler_account.withdraw(100)
+alan_tyler_account.withdraw(0)
+alan_tyler_account.withdraw(-100)
 
 print(alan_tyler_account.balance)
 
