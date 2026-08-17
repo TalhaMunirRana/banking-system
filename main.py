@@ -12,7 +12,10 @@ class Bank():
 
     def add_customer(self, customer):
         """Add customer into the customer list."""
-        self.customers.append(customer)
+        if customer not in self.customers:
+            self.customers.append(customer)
+        else:
+            print("Customer already exists.")
 
     def remove_customer(self, c_id):
         """Remove the given customer from the list."""
@@ -31,7 +34,10 @@ class Bank():
 
     def add_account(self, account):
         """Add account to the accounts list."""
-        self.accounts.append(account)
+        if account not in self.accounts:
+            self.accounts.append(account)
+        else:
+            print("Account already exists.")
 
     def remove_account(self, acc_number):
         """Remove the given customer from the list."""
@@ -50,8 +56,17 @@ class Bank():
 
     def transfer_money(self, sender_account, reciever_account, amount):
         """Transfer the given ammount to the recieving account."""
-        sender_account.balance -= amount
-        reciever_account.balance += amount
+        if 0 < amount <= sender_account.balance:
+            sender_account.balance -= amount
+            sender_account.transaction_history.append(f"Sent - ${amount}")
+            reciever_account.balance += amount
+            reciever_account.transaction_history.append(f"Recieved - ${amount}")
+        elif amount == 0:
+            print("You can't transfer $0")
+        elif amount > sender_account.balance:
+            print("Insufficient funds")
+        else:
+            print("You can't transfer a negative amount.")
 
 class Account():
     """Model the account"""
@@ -95,10 +110,6 @@ class Account():
         """Shows the current balance in the account."""
         print(f"Current balance: ${self.balance}")
 
-    def transfer(self):
-        """Transfers the amount to the other account."""
-        pass
-
     def show_transactions(self):
         """Displays the transactions done by the account."""
         print("\n---Transactions History---")
@@ -124,35 +135,18 @@ class Customer():
 
     def add_account(self, account):
         """Adds the account in the customer account list."""
-        self.accounts.append(account)
+        if account not in self.accounts:
+            self.accounts.append(account)
+        else:
+            print("Account already exists.")
 
-    def remove_account(self):
+    def remove_account(self, acc_number):
         """Removes the account from the customer accounts list."""
-        pass
+        for account in self.accounts:
+            if account.account_number == acc_number:
+                self.accounts.remove(account)
 
     def show_accounts(self):
         """Shows the accounts created under customer's name"""
         for account in self.accounts:
             print(account)
-
-
-bank = Bank("Commercial Bank")
-
-alan_tyler = Customer("C001", "Alan Tyler", "+12345678")
-
-alan_tyler_account = Account("A001", alan_tyler, 1000, "1234", "Current", "Active")
-
-jake_blake = Customer("C002", "Jake Blake", "+1231245")
-
-jake_blake_account = Account("A002", jake_blake, 3000, "4123", "Current", "Active")
-
-bank.add_customer(alan_tyler)
-bank.add_customer(jake_blake)
-
-bank.add_account(alan_tyler_account)
-bank.add_account(jake_blake_account)
-
-bank.transfer_money(alan_tyler_account, jake_blake_account, 100)
-
-print(alan_tyler_account.balance)
-print(jake_blake_account.balance)
