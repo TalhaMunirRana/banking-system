@@ -22,15 +22,18 @@ class Bank():
         for customer in self.customers:
             if customer.customer_id == c_id:
                 self.customers.remove(customer)
+                break
+        else:
+            print("Customer does not exist.")
 
     def find_customer(self, c_id):
         """Find the customer using the id"""
         for customer in self.customers:
             if customer.customer_id == c_id:
                 print(customer)
-            else:
-                print("Customer does not exist.")
                 break
+        else:
+            print("Customer does not exist.")
 
     def add_account(self, account):
         """Add account to the accounts list."""
@@ -44,15 +47,18 @@ class Bank():
         for account in self.accounts:
             if account.account_number == acc_number:
                 self.accounts.remove(account)
+                break
+        else:
+            print("Account doesn't exists.")
 
     def find_account(self, acc_id):
         """Find the account using the account number."""
         for account in self.accounts:
             if account.account_number == acc_id:
                 print(account)
-            else:
-                print("Account does not exist.")
                 break
+        else:
+            print("Account does not exist.")
 
     def transfer_money(self, sender_account, reciever_account, amount):
         """Transfer the given ammount to the recieving account."""
@@ -103,6 +109,8 @@ class Account():
             self.transaction_history.append(f"Withdraw - ${amount}")
         elif amount == 0:
             print("You can't withdraw $0.")
+        elif amount > self.balance:
+            print("Insufficient funds.")
         else:
             print("You can't withdraw negative amount.")
 
@@ -145,6 +153,9 @@ class Customer():
         for account in self.accounts:
             if account.account_number == acc_number:
                 self.accounts.remove(account)
+                break
+        else:
+            print("Account doesn't exist.")
 
     def show_accounts(self):
         """Shows the accounts created under customer's name"""
