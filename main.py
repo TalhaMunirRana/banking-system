@@ -62,17 +62,20 @@ class Bank():
 
     def transfer_money(self, sender_account, reciever_account, amount):
         """Transfer the given ammount to the recieving account."""
-        if 0 < amount <= sender_account.balance:
-            sender_account.balance -= amount
-            sender_account.transaction_history.append(f"Sent - ${amount}")
-            reciever_account.balance += amount
-            reciever_account.transaction_history.append(f"Recieved - ${amount}")
-        elif amount == 0:
-            print("You can't transfer $0")
-        elif amount > sender_account.balance:
-            print("Insufficient funds")
+        if sender_account.status == 'active' and reciever_account.status == 'active':
+            if 0 < amount <= sender_account.balance:
+                sender_account.balance -= amount
+                sender_account.transaction_history.append(f"Sent - ${amount}")
+                reciever_account.balance += amount
+                reciever_account.transaction_history.append(f"Recieved - ${amount}")
+            elif amount == 0:
+                print("You can't transfer $0")
+            elif amount > sender_account.balance:
+                print("Insufficient funds")
+            else:
+                print("You can't transfer a negative amount.")
         else:
-            print("You can't transfer a negative amount.")
+            print("You can't trasnfer to and from closed accounts.")
 
 class Account():
     """Model the account"""
@@ -92,27 +95,33 @@ class Account():
 
     def deposit(self, amount):
         """Deposit the ammount in the account balance."""
-        if amount > 0:
-            self.balance += amount
-            print(f"${amount} has been deposited.")
-            self.transaction_history.append(f"Deposit - ${amount}")
-        elif amount == 0:
-            print("You can't deposit $0.")
+        if self.status == 'active':
+            if amount > 0:
+                self.balance += amount
+                print(f"${amount} has been deposited.")
+                self.transaction_history.append(f"Deposit - ${amount}")
+            elif amount == 0:
+                print("You can't deposit $0.")
+            else:
+                print("You can't deposit a negative amount.")
         else:
-            print("You can't deposit a negative amount.")
+            print("You can't deposit in a closed account.")
 
     def withdraw(self, amount):
         """Withdraw the ammount give by the customer"""
-        if 0 < amount <= self.balance:
-            self.balance -= amount
-            print(f"${amount} has been withdrawn.")
-            self.transaction_history.append(f"Withdraw - ${amount}")
-        elif amount == 0:
-            print("You can't withdraw $0.")
-        elif amount > self.balance:
-            print("Insufficient funds.")
+        if self.status == 'active':
+            if 0 < amount <= self.balance:
+                self.balance -= amount
+                print(f"${amount} has been withdrawn.")
+                self.transaction_history.append(f"Withdraw - ${amount}")
+            elif amount == 0:
+                print("You can't withdraw $0.")
+            elif amount > self.balance:
+                print("Insufficient funds.")
+            else:
+                print("You can't withdraw negative amount.")
         else:
-            print("You can't withdraw negative amount.")
+            print("You can't withdraw from a closed account.")
 
     def check_balance(self):
         """Shows the current balance in the account."""
@@ -126,7 +135,7 @@ class Account():
 
     def close_account(self):
         """Closes the account."""
-        self.status = 'Closed'
+        self.status = 'closed'
 
 class Customer():
     """Contains the information about the customer and it's accounts"""
