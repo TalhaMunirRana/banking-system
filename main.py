@@ -30,10 +30,8 @@ class Bank():
         """Find the customer using the id"""
         for customer in self.customers:
             if customer.customer_id == c_id:
-                print(customer)
-                break
-        else:
-            print("Customer does not exist.")
+                return customer
+        return None
 
     def add_account(self, account):
         """Add account to the accounts list."""
@@ -55,10 +53,8 @@ class Bank():
         """Find the account using the account number."""
         for account in self.accounts:
             if account.account_number == acc_id:
-                print(account)
-                break
-        else:
-            print("Account does not exist.")
+                return account
+        return None
 
     def transfer_money(self, sender_account, reciever_account, amount):
         """Transfer the given ammount to the recieving account."""
@@ -170,3 +166,5 @@ class Customer():
         """Shows the accounts created under customer's name"""
         for account in self.accounts:
             print(account)
+
+def main():
