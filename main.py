@@ -37,6 +37,13 @@ class Bank():
         """Add account to the accounts list."""
         if account not in self.accounts:
             self.accounts.append(account)
+
+            customer = account.account_holder
+
+            if customer in self.customers:
+                customer.add_account(account)
+            else:
+                print("Account holder is not a customer of this bank.")
         else:
             print("Account already exists.")
 
