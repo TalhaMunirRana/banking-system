@@ -35,17 +35,19 @@ class Bank():
 
     def add_account(self, account):
         """Add account to the accounts list."""
-        if account not in self.accounts:
-            self.accounts.append(account)
-
-            customer = account.account_holder
-
-            if customer in self.customers:
-                customer.add_account(account)
-            else:
-                print("Account holder is not a customer of this bank.")
-        else:
+        if account in self.accounts:
             print("Account already exists.")
+            return
+
+        customer = account.account_holder
+
+        if customer not in self.customers:
+            print("Account holder is not a customer of this bank.")
+            return
+
+        self.accounts.append(account)
+        customer.add_account(account)
+        print("Account created successfully.")
 
     def remove_account(self, acc_number):
         """Remove the given customer from the list."""
@@ -54,7 +56,7 @@ class Bank():
                 self.accounts.remove(account)
                 break
         else:
-            print("Account doesn't exists.")
+            print("Account doesn't exist.")
 
     def find_account(self, acc_id):
         """Find the account using the account number."""
@@ -63,14 +65,14 @@ class Bank():
                 return account
         return None
 
-    def transfer_money(self, sender_account, reciever_account, amount):
-        """Transfer the given ammount to the recieving account."""
-        if sender_account.status == 'active' and reciever_account.status == 'active':
+    def transfer_money(self, sender_account, receiver_account, amount):
+        """Transfer the given amount to the receiving account."""
+        if sender_account.status == 'active' and receiver_account.status == 'active':
             if 0 < amount <= sender_account.balance:
                 sender_account.balance -= amount
                 sender_account.transaction_history.append(f"Sent - ${amount}")
-                reciever_account.balance += amount
-                reciever_account.transaction_history.append(f"Recieved - ${amount}")
+                receiver_account.balance += amount
+                receiver_account.transaction_history.append(f"Received - ${amount}")
             elif amount == 0:
                 print("You can't transfer $0")
             elif amount > sender_account.balance:
@@ -78,7 +80,7 @@ class Bank():
             else:
                 print("You can't transfer a negative amount.")
         else:
-            print("You can't trasnfer to and from closed accounts.")
+            print("You can't transfer to and from closed accounts.")
 
 class Account():
     """Model the account"""
@@ -175,3 +177,4 @@ class Customer():
             print(account)
 
 def main():
+    ...
