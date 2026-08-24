@@ -25,3 +25,18 @@ while True:
 12. Exit
 """)
 
+    choice = input("\nEnter your choice: ")
+
+    # Add customer
+    if choice == '1':
+        print("\n--- Add Customer ---")
+
+        customer_id = input("Customer ID: ").strip()
+        name = input("Customer Name: ").strip()
+        phone = input('Customer Phone: ').strip()
+
+        customer = Customer(customer_id, name, phone)
+        bank.add_customer(customer)
+
+        
+
