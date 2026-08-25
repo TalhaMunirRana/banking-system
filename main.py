@@ -174,8 +174,20 @@ while True:
 
         print(f"\n{customer.name.title()} Accounts:")
         customer.show_accounts()
-        
+
     # Find customer
+    elif choice == '9':
+        print("\n--- Find Customer ---")
+
+        customer_id = input("Customer ID: ").strip()
+        customer = bank.find_customer(customer_id)
+
+        if customer:
+            print("\nCustomer found")
+            print(customer)
+        else:
+            print("Customer does not exist.")
+            
     # Find account
     # Close account
     # Exit
