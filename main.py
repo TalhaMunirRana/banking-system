@@ -45,7 +45,7 @@ while True:
         customer_id = input("Customer ID: ").strip()
         customer = bank.find_customer(customer_id)
 
-        if customer == None:
+        if customer is None:
             print("Customer doesn't exist.")
             continue
 
@@ -59,7 +59,7 @@ while True:
         pin = input("Set PIN: ").strip()
 
         try:
-            balance = float(input("Initial Deposit: "))
+            balance = float(input("Initial Deposit: $"))
         except ValueError:
             print("Please enter a valid amount.")
             continue
@@ -72,6 +72,38 @@ while True:
 
         bank.add_account(account)
 
+    # Deposit
+    elif choice == '3':
+        print("\n--- Deposit Amount ---")
+
+        account_number = input("Account Number: ").strip()
+        account = bank.find_account(account_number)
+
+        if account is None:
+            print("Account does not exists.")
+            continue
+
+        try:
+            amount = float(input("Enter Deposit amount: $"))
+        except ValueError:
+            print("Please enter a valid amount.")
+            continue
+
+        account.deposit(amount)
+
+    # Withdraw
+    # Check Balance
+    # Transfer Money
+    # Show transactions
+    # Show customer accounts
+    # Find customer
+    # Find account
+    # Close account
+    # Exit
+    elif choice == '12':
+        break
+    else:
+        print("Please enter a valid option")
 
         
 
