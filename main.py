@@ -200,8 +200,24 @@ while True:
             print(account)
         else:
             print("Account does not exist.")
-            
+
     # Close account
+    elif choice == '11':
+        print("\n--- Close Account ---")
+
+        acc_number = input("Account number: ").strip()
+        account = bank.find_account(acc_number)
+
+        if account is None:
+            print("Account does not exist.")
+            continue
+
+        if account.status == 'closed':
+            print("Account is already closed.")
+        else:
+            account.close_account()
+            print("Account closed successfully.")
+            
     # Exit
     elif choice == '12':
         break
