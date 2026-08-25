@@ -149,7 +149,32 @@ while True:
         bank.transfer_money(sender_account, reciever_account, amount)
 
     # Show transactions
+    elif choice == '7':
+        print("\n--- Transaction History ---")
+
+        acc_number = input("Account number: ").strip()
+        account = bank.find_account(acc_number)
+
+        if account is None:
+            print("Account does not exists.")
+            continue
+
+        account.show_transactions()
+
     # Show customer accounts
+    elif choice == '8':
+        print("\n--- Customer Accounts ---")
+
+        customer_id = input("Customer ID: ").strip()
+        customer = bank.find_customer(customer_id)
+
+        if customer is None:
+            print("Customer does not exists.")
+            continue
+
+        print(f"\n{customer.name.title()} Accounts:")
+        customer.show_accounts()
+        
     # Find customer
     # Find account
     # Close account
