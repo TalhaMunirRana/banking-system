@@ -109,6 +109,7 @@ while True:
             continue
 
         account.withdraw(amount)
+
     # Check Balance
     elif choice == '5':
         print("\n--- Check Balance ---")
@@ -121,7 +122,32 @@ while True:
             continue
 
         account.check_balance()
+
     # Transfer Money
+    elif choice == '6':
+        print("\n--- Transfer money ---")
+
+        sender_acc_number = input("Sender Account Number: ").strip()
+        sender_account = bank.find_account(sender_acc_number)
+
+        if sender_account is None:
+            print("Sender account does not exists.")
+            continue
+
+        reciever_acc_number = input("Receiver Account Number: ").strip()
+        reciever_account = bank.find_account(reciever_acc_number)
+
+        if reciever_account is None:
+            print("Reciever account does not exists.")
+            continue
+
+        try:
+            amount = float(input("Enter the amount: $"))
+        except ValueError:
+            print("Please enter a valid amount.")
+
+        bank.transfer_money(sender_account, reciever_account, amount)
+
     # Show transactions
     # Show customer accounts
     # Find customer
