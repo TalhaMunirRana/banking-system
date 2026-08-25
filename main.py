@@ -187,8 +187,20 @@ while True:
             print(customer)
         else:
             print("Customer does not exist.")
-            
+
     # Find account
+    elif choice == '10':
+        print("\n--- Find Account ---")
+
+        acc_number = input("Account number: ").strip()
+        account = bank.find_account(acc_number)
+
+        if account:
+            print("\nAccount found:")
+            print(account)
+        else:
+            print("Account does not exist.")
+            
     # Close account
     # Exit
     elif choice == '12':
