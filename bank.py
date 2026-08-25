@@ -16,9 +16,10 @@ class Bank():
             for bank_customer in self.customers:
                 if customer.customer_id == bank_customer.customer_id:
                     print("Customer already exists.")
-        else:
-            self.customers.append(customer)
-            print(f"Customer {customer.name.title()} added successfully")
+                    return
+        
+        self.customers.append(customer)
+        print(f"Customer {customer.name.title()} added successfully")
 
     def remove_customer(self, c_id):
         """Remove the given customer from the list."""

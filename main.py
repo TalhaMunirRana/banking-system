@@ -38,5 +38,40 @@ while True:
         customer = Customer(customer_id, name, phone)
         bank.add_customer(customer)
 
+    # Create Account
+    elif choice == '2':
+        print("\n--- Create Account ---")
+
+        customer_id = input("Customer ID: ").strip()
+        customer = bank.find_customer(customer_id)
+
+        if customer == None:
+            print("Customer doesn't exist.")
+            continue
+
+        account_number = input("Account Number: ").strip()
+
+        if bank.find_account(account_number):
+            print("Account already exists.")
+            continue
+
+        account_type = input("Account type (checkings/saving): ").strip().lower()
+        pin = input("Set PIN: ").strip()
+
+        try:
+            balance = float(input("Initial Deposit: "))
+        except ValueError:
+            print("Please enter a valid amount.")
+            continue
+
+        if balance < 0:
+            print("Balance can not be a negative amount.")
+            continue
+
+        account = Account(account_number, customer, balance, pin, account_type, 'active')
+
+        bank.add_account(account)
+
+
         
 
