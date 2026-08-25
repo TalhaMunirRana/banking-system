@@ -76,8 +76,8 @@ while True:
     elif choice == '3':
         print("\n--- Deposit Amount ---")
 
-        account_number = input("Account Number: ").strip()
-        account = bank.find_account(account_number)
+        acc_number = input("Account Number: ").strip()
+        account = bank.find_account(acc_number)
 
         if account is None:
             print("Account does not exists.")
@@ -92,6 +92,23 @@ while True:
         account.deposit(amount)
 
     # Withdraw
+    elif choice == '4':
+        print("\n--- Withdraw ---")
+
+        acc_number = input("Account Number: ").strip()
+        account = bank.find_account(acc_number)
+
+        if account is None:
+            print("Account does not exists.")
+            continue
+
+        try:
+            amount = float(input("Enter withdraw amount: $"))
+        except ValueError:
+            print("Please enter a valid amount.")
+            continue
+
+        account.withdraw(amount)
     # Check Balance
     # Transfer Money
     # Show transactions
