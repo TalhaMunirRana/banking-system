@@ -110,6 +110,17 @@ while True:
 
         account.withdraw(amount)
     # Check Balance
+    elif choice == '5':
+        print("\n--- Check Balance ---")
+
+        acc_number = input("Account Number: ").strip()
+        account = bank.find_account(acc_number)
+
+        if account is None:
+            print("Account does not exists.")
+            continue
+
+        account.check_balance()
     # Transfer Money
     # Show transactions
     # Show customer accounts
