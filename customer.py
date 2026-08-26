@@ -30,4 +30,8 @@ class Customer():
     def show_accounts(self):
         """Shows the accounts created under customer's name"""
         for account in self.accounts:
-            print(account)
+            print(f"\nAccount Number: {account.account_number}")
+            print(f"Account Holder: {account.account_holder.name.title()}")
+            print(f"Account Type: {account.account_type}")
+            print(f"Balance: ${account.balance}")
+            print(f"Status: {account.status}")
