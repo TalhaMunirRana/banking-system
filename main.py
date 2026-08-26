@@ -197,7 +197,7 @@ while True:
 
         if account:
             print("\nAccount found:")
-            print(f"Account Holder: {account.account_holder.title()}")
+            print(f"Account Holder: {account.account_holder.name.title()}")
             print(f"Account Type: {account.account_type}")
             print(f"Balance: {account.balance}")
             print(f"Status: {account.status}")
