@@ -184,7 +184,7 @@ while True:
 
         if customer:
             print("\nCustomer found")
-            print(customer)
+            print(f"Customer Name: {customer.name.title()}")
         else:
             print("Customer does not exist.")
 
@@ -197,7 +197,10 @@ while True:
 
         if account:
             print("\nAccount found:")
-            print(account)
+            print(f"Account Holder: {account.account_holder.title()}")
+            print(f"Account Type: {account.account_type}")
+            print(f"Balance: {account.balance}")
+            print(f"Status: {account.status}")
         else:
             print("Account does not exist.")
 
