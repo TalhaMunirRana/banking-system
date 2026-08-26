@@ -220,6 +220,7 @@ while True:
             
     # Exit
     elif choice == '12':
+        print("Thank you for using Python National Bank.")
         break
     else:
         print("Please enter a valid option")
